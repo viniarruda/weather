@@ -1,15 +1,36 @@
-import React from 'react'
-import Button from '../../layout/styled-components/button'
-import Title from '../../layout/styled-components/title'
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { getWeather } from '../../../store/weather/thunks'
 
-const Home = () => (
-    <div>
-        <Title>Home Page</Title>
-        <Button red>Colors!</Button>
-        <Button green>Colors!</Button>
-        <Button>Colors!</Button>
-        <Button yellow>Colors!</Button>
-    </div>
-)
+const Home = (props) => {
 
-export default Home
+	const [load, loadApi] = useState(false)
+
+	useEffect(() => {
+		if (!load) {
+			console.log('oi');
+    	props.getWeather();
+			loadApi(true);
+		}
+  });
+	
+
+	return (
+	  <div>
+	  	<div>
+	  		<h1>São Paulo</h1>
+	  		{
+	  			console.log(props.weather)
+	  		}
+	  	</div>
+	  </div>
+	)
+}
+
+const mapStateToProps = (state) => ({
+	weather: state.weather
+})
+
+export default connect(mapStateToProps, {
+	getWeather
+})(Home)

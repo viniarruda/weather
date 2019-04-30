@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import auth from "./auth/reducers"
+import weather from "./weather/reducers"
 
 const appReducer = combineReducers({
-  auth
+  weather
 });
 
 export default (state, action) => appReducer(state, action);
