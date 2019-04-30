@@ -1,8 +1,10 @@
 # React + Redux Weather
 
-This project have weather
+This project use Weather Api and :
+
 - Redux
 - Styled Components
+- Hooks
 
 ## Run the project
 
