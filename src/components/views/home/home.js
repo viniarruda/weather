@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { getWeather } from '../../../store/weather/thunks'
+import Container from './container/container'
+import List from './components/list'
+import Card from './components/card'
 
 const Home = (props) => {
 
@@ -8,22 +11,28 @@ const Home = (props) => {
 
 	useEffect(() => {
 		if (!load) {
-			console.log('oi');
     	props.getWeather();
 			loadApi(true);
 		}
   });
-	
 
+	const { weather } = props
 	return (
-	  <div>
-	  	<div>
-	  		<h1>São Paulo</h1>
-	  		{
-	  			console.log(props.weather)
-	  		}
-	  	</div>
-	  </div>
+	  <Container>
+  		{
+  			weather.list && 
+		  		<List>
+		  		{
+		  			weather.list.list.map((i, key) => 
+		  				<Card key={key} {...i} />
+	  				)
+		  		}
+		  		</List>
+  		}
+  		{
+  			console.log(weather)
+  		}
+	  </Container>
 	)
 }
 
